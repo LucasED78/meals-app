@@ -7,12 +7,14 @@ class DelimealScaffold extends StatelessWidget {
   final Widget body;
   final bool drawer;
   final FloatingActionButton floatingActionButton;
+  final List<Widget> actions;
 
   const DelimealScaffold({
     @required this.title,
     @required this.body,
     this.drawer = false,
-    this.floatingActionButton
+    this.floatingActionButton,
+    this.actions
   });
 
   @override
@@ -21,6 +23,7 @@ class DelimealScaffold extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
         centerTitle: true,
+        actions: actions != null ? actions : [],
       ),
       drawer: drawer ? DelimealDrawer() : null,
       body: body,
