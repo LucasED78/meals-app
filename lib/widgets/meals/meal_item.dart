@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/models/meal.dart';
+import 'package:meals_app/widgets/meals/meal_detail_screen.dart';
 
 class MealItem extends StatelessWidget {
 
@@ -55,52 +56,58 @@ class MealItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 4,
-      margin: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-      child: Column(
-        children: <Widget>[
-          Stack(
-            children: <Widget>[
-              Image.network(
-                _meal.imageUrl,
-                height: 250,
-                width: double.infinity,
-                fit: BoxFit.cover,
-              ),
-              Positioned(
-                bottom: 20,
-                right: 10,
-                child: Container(
-                  width: 350,
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-                  color: Colors.black54,
-                  child: Text(
-                    _meal.title,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20
-                    ),
-                    softWrap: true,
-                    overflow: TextOverflow.fade,
-                  ),
-                ),
-              )
-            ],
-          ),
-          Padding(
-            padding: EdgeInsets.all(20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+    return InkWell(
+      child: Card(
+        elevation: 4,
+        margin: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+        child: Column(
+          children: <Widget>[
+            Stack(
               children: <Widget>[
-                _buildRow(Icons.schedule, "${_meal.duration}"),
-                _buildRow(Icons.work, complexityText),
-                _buildRow(Icons.attach_money, affordabilityText)
+                Image.network(
+                  _meal.imageUrl,
+                  height: 250,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
+                Positioned(
+                  bottom: 20,
+                  right: 10,
+                  child: Container(
+                    width: 300,
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                    color: Colors.black54,
+                    child: Text(
+                      _meal.title,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20
+                      ),
+                      textAlign: TextAlign.end,
+                      softWrap: true,
+                      overflow: TextOverflow.fade,
+                    ),
+                  ),
+                )
               ],
             ),
-          )
-        ],
+            Padding(
+              padding: EdgeInsets.all(20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  _buildRow(Icons.schedule, "${_meal.duration}"),
+                  _buildRow(Icons.work, complexityText),
+                  _buildRow(Icons.attach_money, affordabilityText)
+                ],
+              ),
+            )
+          ],
+        ),
       ),
+      onTap: () => {
+        Navigator.of(context).pushNamed(MealDetailScreen.routeName, arguments: _meal)
+      },
     );
   }
 }
