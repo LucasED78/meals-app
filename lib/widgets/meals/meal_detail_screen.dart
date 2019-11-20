@@ -6,6 +6,11 @@ class MealDetailScreen extends StatelessWidget {
 
   static const routeName = '/meal-detail';
 
+  final Function _toggleFavorite;
+  final Function _isFavorite;
+
+  MealDetailScreen(this._toggleFavorite, this._isFavorite);
+
   @override
   Widget build(BuildContext context) {
 
@@ -74,9 +79,11 @@ class MealDetailScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        tooltip: "remove a meals",
-        child: Icon(Icons.delete, color: Theme.of(context).errorColor,),
-        onPressed: () => Navigator.of(context).pop(_meal.id),
+        tooltip: "favorite a meal",
+        child: Icon(
+          _isFavorite(_meal) ? Icons.star : Icons.star_border
+        ),
+        onPressed: () => _toggleFavorite(_meal),
       ),
     );
   }

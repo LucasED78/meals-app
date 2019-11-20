@@ -47,12 +47,12 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
 
     return DelimealScaffold(
       title: _category.title,
-      body: ListView.builder(
+      body: _categoryMeals.isNotEmpty ? ListView.builder(
         itemCount: _categoryMeals.length,
         itemBuilder: (context, index){
-          return MealItem(_categoryMeals[index], _removeMeal);
+          return MealItem(_categoryMeals[index]);
         },
-      ),
+      ) : Center(child: Text("No meals for this category", style: Theme.of(context).textTheme.title,),)
     );
   }
 }
