@@ -5,8 +5,9 @@ import 'package:meals_app/widgets/meals/meal_detail_screen.dart';
 class MealItem extends StatelessWidget {
 
   final Meal _meal;
+  final Function removeItem;
 
-  const MealItem(this._meal);
+  const MealItem(this._meal, this.removeItem);
 
   get affordabilityText {
     switch (_meal.affordability){
@@ -105,8 +106,13 @@ class MealItem extends StatelessWidget {
           ],
         ),
       ),
-      onTap: () => {
+      onTap: () {
         Navigator.of(context).pushNamed(MealDetailScreen.routeName, arguments: _meal)
+            .then((mealId){
+              if (mealId != null) {
+                removeItem(mealId);
+              }
+        });
       },
     );
   }

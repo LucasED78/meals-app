@@ -6,9 +6,7 @@ import 'package:meals_app/widgets/core/delimeal_scaffold.dart';
 class CategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return DelimealScaffold(
-      title: "DeliMeal",
-      body: GridView(
+      return GridView(
         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
           maxCrossAxisExtent: 200,
           childAspectRatio: 3 / 2,
@@ -16,7 +14,6 @@ class CategoryScreen extends StatelessWidget {
           mainAxisSpacing: 20
         ),
         children: DUMMY_CATEGORIES.map<Widget>((cat) => CategoryItem(cat)).toList(),
-      ),
     );
   }
 }

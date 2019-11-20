@@ -72,7 +72,12 @@ class MealDetailScreen extends StatelessWidget {
             ],
           ),
         ),
-      )
+      ),
+      floatingActionButton: FloatingActionButton(
+        tooltip: "remove a meal",
+        child: Icon(Icons.delete, color: Theme.of(context).errorColor,),
+        onPressed: () => Navigator.of(context).pop(_meal.id),
+      ),
     );
   }
 }
